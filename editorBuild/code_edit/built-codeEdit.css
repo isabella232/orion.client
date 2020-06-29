@@ -1,7 +1,7 @@
 .textview {
 	color: #333;
 	background-color: white;
-	font-family: "Consolas", "Monaco", "Vera Mono", monospace;
+	font-family: "Consolas", "Menlo", "Monaco", "Vera Mono", monospace;
 	font-size: 12px;
 	min-width: 50px;
 	min-height: 50px;
@@ -10,10 +10,10 @@
 	background: rgb(180, 213, 255);
 }
 .textviewContent ::-moz-selection {
-	background: rgb(180, 213, 255);
+	background: rgba(180, 213, 255, 0.99);
 }
 .textviewContent ::selection {
-	background: rgb(180, 213, 255);
+	background: rgba(180, 213, 255, 0.99);
 }
 .textviewSelectionUnfocused {
 	background: lightgray;
@@ -94,7 +94,7 @@
 	background-image: none;
 }
 .textviewTooltip {
-	font-family: "Consolas", "Monaco", "Vera Mono", monospace;
+	font-family: "Consolas", "Menlo", "Monaco", "Vera Mono", monospace;
 	font-size: 12px;
 	background-color: #3B4B54; 
 	color: #FAFAFA;
@@ -256,6 +256,10 @@
 .contentassist .proposal-emphasis {
 	font-weight: normal;
 }
+.contentassist .proposal-strikethrough {
+	font-weight: normal;
+	text-decoration: line-through;
+}
 .contentassist hr{
 	border: 0;
 	height: 0;
@@ -304,6 +308,14 @@
 	margin-right: 3px;
 	text-align: center;
   	color: white;
+}
+.contentassist .colorTag {
+	width: 16px;
+	height: 10px;
+	border-radius: 2px;
+	vertical-align: middle;
+	margin-right: 5px;
+	display: inline-block;
 }
 .contentassist .iconTemplate {
 	width: 16px;
@@ -400,7 +412,7 @@
 	overflow: visible;
 }
 .comment {
-	color: #357d21;
+	color: #157B07;
 }
 .constant {
 	color: blue;
@@ -454,7 +466,7 @@
 	color: #7D7755;
 }
 .entity-other-attribute-name {
-	color: #357d21;
+	color: #157B07;
 }
 .invalid-illegal {
 	color: white;
@@ -471,7 +483,7 @@
 	background-color: #EAF2FE;
 }
 .meta.tag {
-	color: #3f7f7f;
+	color: #247575;
 }
 .punctuation-definition-comment {
 	color: #3f5fbf;
@@ -519,6 +531,7 @@
 .annotation.matchingBracket, 
 .annotation.currentLine,
 .annotation.matchingSearch,
+.annotation.searchRange,
 .annotation.currentSearch,
 .annotation.readOccurrence,
 .annotation.writeOccurrence,
@@ -527,7 +540,7 @@
 .annotation.selectedLinkedGroup {
 }
 .annotation.blame {
-	color: #707070;
+	color: black;
 	background-color: rgb(255, 132, 44);
 }
 .annotation.currentBlame {
@@ -535,17 +548,21 @@
 	background-color: rgb(184, 103, 163);
 }
 .annotation.diffAdded {
-	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAIAAADZSiLoAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAaSURBVBhXY5x/KoyBgSHBdCUTkIIAGIuBAQBMsAMD4UOAtwAAAABJRU5ErkJggg==);
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAYAAAC09K7GAAAAGklEQVQYV2Pce7v7PwMDA4OzaikjiGYkKAAAZdgMBOA1thkAAAAASUVORK5CYII=);
 	background-repeat: repeat-y;
 	color: #CCCCCC;
 }
 .annotation.diffModified {
-	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAAcSURBVBhXYwzdevs/AxCs8lJhYAIxYACJw8AAAIlKBAKlNXzqAAAAAElFTkSuQmCC);
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAYAAAC09K7GAAAAGklEQVQYV2PsOfv8PwMDA0OJsSQjiGYkKAAAaJAMBLPhgI8AAAAASUVORK5CYII=);
 	background-repeat: repeat-y;
 	color: #CCCCCC;
 }
+.annotation.collabLineChanged {
+	background-repeat: repeat-y;
+	color: #FFFFFF;
+}
 .annotation.diffDeleted {
-	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAIAAADZSiLoAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAVSURBVBhXY3growJBDP9hAMb6/x8ADgMVdmD2Og4AAAAASUVORK5CYII=);
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAYAAAC09K7GAAAAFklEQVQYV2P8z8DwnwEJMCJzQGwMAQBhOAICSwrQUwAAAABJRU5ErkJggg==);
 	background-repeat: repeat-x;
 	color: #CCCCCC;
 }
@@ -555,6 +572,11 @@
 	color: #555555;
 }
 .lines .annotation.diffModified {
+	background-image: none;
+	background-color: rgba(85, 181, 219, 0.67);
+	color: #555555;
+}
+.lines .annotation.collabLineChanged {
 	background-image: none;
 	background-color: rgba(85, 181, 219, 0.67);
 	color: #555555;
@@ -591,6 +613,11 @@
 .annotationHTML.breakpoint {
 	
 	background-image: url("data:image/gif;base64,R0lGODlhEAAQANUAAFheoFxkoFxnpmt0pmZxpnF7rYyWwmJwpnaFs3aDrWt8rXGBrYycwmZ3mXuNs42cu77F03GIs3aJrYGVu2J5oKCuxeDj6LK/03GLrYieu3aIoIygu6m4zcLN3MTM1m6Rs2aLriRgkSZilXGXtoGcs7LD0QBLhSZikihol3ScubrO2Yaqu5q4xpO0wpm7yabF0ZO9yaXI0r3X3tHj6P///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAADQALAAAAAAQABAAAAafQJpwSCwWLYZBIDAwWIw0A+FFpW6aRUPCxe1yE4ahhdCCxWSzmSwGgxGeUceKpUqhUCkVa7UK0wgkJCUjJoUmIyWBBEIEGhoeJ4YmJx6OAUIADQ0QIZIhEJoAQgEUFBUgkiAVpZdRCxIPFx8iIh8XDw4FfhYHDhgZHB0dHBkYEwdwUQoTEc3OEwp+QwYHCBMMDBMIB9JESAJLAk5Q5EVBADs=");
+}
+.annotationHTML.conditionalBreakpoint {
+	
+	background-image: url("data:image/gif;base64,R0lGODlhEAAQANUAAFheoFxkoFxnpmt0pmZxpnF7rYyWwmJwpnaFs3aDrWt8rXGBrYycwmZ3mXuNs42cu77F03GIs3aJrYGVu2J5oKCuxeDj6LK/03GLrYieu3aIoIygu6m4zcLN3MTM1m6Rs2aLriRgkSZilXGXtoGcs7LD0QBLhSZikihol3ScubrO2Yaqu5q4xpO0wpm7yabF0ZO9yaXI0r3X3tHj6P///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAADQALAAAAAAQABAAAAafQJpwSCwWLYZBIDAwWIw0A+FFpW6aRUPCxe1yE4ahhdCCxWSzmSwGgxGeUceKpUqhUCkVa7UK0wgkJCUjJoUmIyWBBEIEGhoeJ4YmJx6OAUIADQ0QIZIhEJoAQgEUFBUgkiAVpZdRCxIPFx8iIh8XDw4FfhYHDhgZHB0dHBkYEwdwUQoTEc3OEwp+QwYHCBMMDBMIB9JESAJLAk5Q5EVBADs=");
+	filter: hue-rotate(180deg);
 }
 .annotationHTML.collapsed {
 	
@@ -658,19 +685,27 @@
 	height: 32px;
 }
 .annotationHTML.diffAdded {
-	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAIAAADZSiLoAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAaSURBVBhXY5x/KoyBgSHBdCUTkIIAGIuBAQBMsAMD4UOAtwAAAABJRU5ErkJggg==);
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAYAAAC09K7GAAAAGklEQVQYV2Pce7v7PwMDA4OzaikjiGYkKAAAZdgMBOA1thkAAAAASUVORK5CYII=);
 	background-repeat: repeat-y;
 	background-position: left top;
 }
 .annotationHTML.diffDeleted {
-	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAIAAADZSiLoAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAVSURBVBhXY3growJBDP9hAMb6/x8ADgMVdmD2Og4AAAAASUVORK5CYII=);
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAYAAAC09K7GAAAAFklEQVQYV2P8z8DwnwEJMCJzQGwMAQBhOAICSwrQUwAAAABJRU5ErkJggg==);
 	background-repeat: repeat-x;
 	background-position: left top;
 }
 .annotationHTML.diffModified {
-	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAAcSURBVBhXYwzdevs/AxCs8lJhYAIxYACJw8AAAIlKBAKlNXzqAAAAAElFTkSuQmCC);
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAYAAAC09K7GAAAAGklEQVQYV2PsOfv8PwMDA0OJsSQjiGYkKAAAaJAMBLPhgI8AAAAASUVORK5CYII=);
 	background-repeat: repeat-y;
 	background-position: left top;
+}
+.annotationHTML.collabLineChanged {
+	text-align: center;
+	border-radius: 50%;
+	line-height: 16px;
+	font-size: 11px;
+	font-family: monospace;
+	font-weight: bold;
 }
 .annotationOverview {
 	cursor: pointer;
@@ -744,6 +779,10 @@
 	background-color: rgba(85, 181, 219, 0.61);
 	border: 1px solid black;
 }
+.annotationOverview.collabLineChanged {
+	background-color: #84b3cf;
+	border: 1px solid #9cc2d8;
+}
 .annotationRange {
 	background-repeat: repeat-x;
  	background-position: left bottom;
@@ -791,7 +830,7 @@
 	background-color: #53D1FF;
 }
 .annotationRange.linkedGroup {
-	outline: 1px solid #707070;
+	outline: 1px dashed #707070;
 }
 .annotationRange.currentLinkedGroup {
 	background-color: #C3E1FF;
@@ -801,8 +840,14 @@
 }
 .annotationLine {
 }
+.annotationLine.searchRange {
+	background-color: #D3D3D3;
+}
 .annotationLine.currentLine {
 	background-color: #EAF2FE;
+}
+.annotationLine.highlightedLine {
+	background: linear-gradient(rgba(255, 255, 153, .5) 100%, rgba(255, 255, 153, .5));
 }
 
 .headerLayout {
@@ -824,6 +869,12 @@
 }
 .fsToolbarLayout {
 	height: 26px; 
+}
+.footerLayout {
+	height: 35px;
+	padding-left: 8px;
+	font-size:0.9em;
+	font-weight:bold;
 }
 .bannerLeftArea{
 	
@@ -871,6 +922,12 @@
 }
   
 }
+.footer {
+	display: none;
+}
+.footer-visible {
+	display: block;
+}
 .bannerRightArea{
 	-ms-flex: 1 6 20%;
 	-moz-box-ordinal-group: 3;
@@ -895,7 +952,6 @@
 	overflow: hidden;
     position: absolute;
     top: 0;
-	    
     bottom: 0;
     left: 35px;
     right: 0;
@@ -904,6 +960,10 @@
 }
 .content-fixedHeight-animation {
     transition: left 0.3s ease; 
+}
+.content-fixedHeight-withFooter {
+	    
+	bottom: 35px;
 }
 .content-fixedHeight-maximized {
 	top: 0;
@@ -917,19 +977,49 @@
 .footer-fixed-bottom {
 	position: fixed;
 	bottom: 0;
-	z-index: 50;
 	right: 0;
 	left: 0;
 	
-	height: 0;
-	background:#ededed;
+	height: 35px;
+}
+.footerBlock {
+	float: left;
+	margin: 8px;
+	color: #7F7F7F;
+	font-weight: bold;
+}
+.footerBlockShutdown {
+	color: red;
+	font-size: 10pt;
+}
+.footerRightBlock {
+	float: right;
+	margin: 8px 8px 0 4px;
+}
+.footerRightBlock ul {
+	margin: 0;
+	margin-top:4px;
+	font-size: .9em;
+	margin-right: 4px;
+}
+.footerRightBlock li {
+	display: inline;
+}
+.footerRightBlock li:after {
+	content: ' ';
+	padding: 0 8px;
+}
+.footerRightBlock li:last-child:after {
+	content: none;
 }
 .layoutBlock {
 	clear: both;
 	margin: 0;
-	
-	padding: 4px 4px 0 4px;
 	vertical-align: baseline;
+}
+.layoutBlock:not(.footerLayout) {
+	
+	padding: 4px 4px 0 4px;	
 }
 .layoutLeft {
 	float: left;
@@ -1041,7 +1131,7 @@
 	position: relative;
 	left: 0;
 	top: 0;
-	height: calc(100% - 29px);
+	height: calc(100% - 35px);
 	overflow-x: visible;
 }
 .projectNavSidebarWrapper > .sidebar {
@@ -1083,25 +1173,91 @@
 	width: 100%;
 	height: 100%;
 }
-.editorViewerHeader {
-	display:flex;
-	background: #3B4B54;
+ .editorViewerHeader {
+	align-items: center;
+ 	background: #3B4B54;
 	color: white;
-	flex-direction:row;
-	align-items:center;
-	line-height:26px;
-	border-bottom: 1px solid #263238;
+	display: flex;
+	flex-direction: row;
+	height: 35px;
+}
+.editorTabContainerOuter {
+	height: 100%;
+	line-height: 26px;
+	width: 100%;
+	overflow: hidden;
+}
+.editorTabContainer {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+	margin: 0;
+	outline: none;
+	overflow-x: hidden;
+	padding: 0;
+	position: relative;
+	white-space: nowrap;
+	z-index: 3;
+}
+.editorTab {
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	padding-top: 1px;
+	display: flex;
+	flex: 0 1 auto;
+}
+.editorTabContent {
+	display: flex;
+	flex: 0 1 auto;
+	margin: 3px;
+	overflow-x: hidden;
+}
+.editorTabContentFocus {
+	outline: none;
+	display: flex;
+	flex: 0 1 auto;
+}
+.editorTabsDisabled {
+	border: none !important;
+	background: inherit !important;
+}
+.editorTabCloseButton {
+	border-radius: 50%;
+    margin: auto 5px auto 5px !important;
+    font-size: 12px !important;
+    height: 10px;
+    line-height: 10px !important;
+    padding: 0 1.5px 1.5px 0px !important;
+    text-align: center;
+    width: 10px;
+    font-style: normal;
+}
+.editorTabCloseButton:hover {
+	background-color: rgb(61, 114, 179);
+	color: #FFFFFF;
 }
 .editorViewerHeaderDirtyIndicator {
 	padding-left: 5px;
 }
 .editorViewerHeaderTitle {
 	padding-left: 5px;
+	overflow: hidden;
+    white-space: nowrap;
+    flex: 1 1 auto;
+}
+.transient {
+	font-style: italic;
+}
+.editorViewerTabDropdown {
+	justify-content: flex-end;
+	margin-right: 10px;
+	margin-left: 10px;
 }
 .editorViewerContent {
 	position: absolute;
 	width: 100%;
-	top: 26px;
+	top: 34px;
 	bottom: 0;
 	overflow: auto
 }
@@ -1114,6 +1270,15 @@
 	right: 35px;
 	width: 40%;
 	height: 40%;
+}
+.focusedEditorTab {
+	border-top: 2px solid;
+	padding-top: 0;
+	background: white;
+	color: black;
+}
+.hideOnDrag {
+  transform: translateX(-9999px);
 }
 .splitLayout {
 	position: absolute;
@@ -1248,7 +1413,6 @@ and (max-device-width : 1024px)  {
 	float: left;
     position: absolute;
     top: 0;
-	   
     bottom: 0;
     -webkit-animation: slide 0.5s forwards;
     -webkit-animation-delay: 2s;
@@ -1265,6 +1429,10 @@ and (max-device-width : 1024px)  {
 }
 .sideMenu.animating {
 	z-index: 0;
+}
+.sideMenu.content-fixedHeight-withFooter {
+	   
+    bottom: 35px;
 }
 .sideMenu-maximized {
 	top: 0;
@@ -1310,6 +1478,7 @@ and (max-device-width : 1024px)  {
 	position: absolute;
 	width: 100%;
 	z-index: 100;
+	outline:none;
 }
 .sideMenuScrollButton.visible {
 	display: block;
@@ -1326,28 +1495,19 @@ and (max-device-width : 1024px)  {
 	opacity: 1;
 }
 .menuScrollButton {
-	background-color: rgba(0,0,0,0) !important;
-	color: #3B4B54 !important;
+	background: linear-gradient(rgba(1,1,1,.2), white) !important;
+	color: black !important;
 	display: none;
 	cursor: pointer;
-	height: 24px;
-	opacity: 0.5;
+	height: 20px;
 	position: absolute;
+	outline: none; 
 	width: 100%;
-	max-width: 125px;
 	z-index: 200;
 }
 .menuTopScrollButton {
 	-webkit-transform: rotate(180deg);		
 	transform: rotate(180deg);
-}
-button.menuScrollButton.menuTopScrollButton.core-sprite-openarrow::before {
-	font-size: larger;
-	padding-right: 90px;
-}
-button.menuScrollButton.menuBottomScrollButton.core-sprite-openarrow::before {
-	font-size: larger;
-	padding-left: 90px;
 }
 .sideMenuItem > .submenu-trigger {
 	color:  #6D8B93 !important;
@@ -1487,6 +1647,9 @@ button.menuScrollButton.menuBottomScrollButton.core-sprite-openarrow::before {
 	z-index: 149;
 	display: block;
 	box-shadow: 0 3px 7pt 0 rgba(0,0,0,0.3) inset;
+}
+.splash.modalBackdrop { 
+	opacity: 1;
 }
 .splashSeeThroughX {
 	-webkit-animation-name: splashSeeThrough;
@@ -1663,6 +1826,13 @@ button.menuScrollButton.menuBottomScrollButton.core-sprite-openarrow::before {
 	z-index: 100;
 	display: none;
 }
+.footer {
+	background:white;
+}
+.logoFooter { 
+	float: left;
+	margin-top:6px;
+}
 a {
 	text-decoration: none;
 	color: #00749c;
@@ -1786,9 +1956,9 @@ a:hover {
 	color: #E6E6E6;
 	-webkit-flex-grow: 0;		
 	flex-grow: 0;
-	font: 9pt;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
-		Helvetica, Tahoma, Geneva, Arial, "Lucida Grande", sans-serif;
+	font-size: 9pt;
+	font-family: HelveticaNeue, "Helvetica Neue", HelveticaNeueRoman, HelveticaNeue-Roman, "Helvetica Neue Roman", 
+		TeXGyreHerosRegular, Helvetica, Tahoma, Geneva, Arial, sans-serif;
 	overflow: hidden;
 	text-decoration: none;
 	text-overflow: ellipsis;
@@ -1811,11 +1981,9 @@ a.breadcrumb:hover {
 	text-decoration: none;
 }
 .currentLocation {
-	padding-top:1px;
-	font-weight: bold;
 	font-size: 9pt;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
-		Helvetica, Tahoma, Geneva, Arial, "Lucida Grande", sans-serif;
+	font-family: HelveticaNeue, "Helvetica Neue", HelveticaNeueRoman, HelveticaNeue-Roman, "Helvetica Neue Roman", 
+		TeXGyreHerosRegular, Helvetica, Tahoma, Geneva, Arial, sans-serif;
 	color: #E6E6E6;
 	text-decoration: none;
 	line-height: 10pt;
@@ -1828,14 +1996,12 @@ div.currentLocation {
 	margin: 0;
 }
 a.currentLocation:hover {
-	font-weight: bold;
 	color: #00AED1;
  	text-decoration: none;
 	border-bottom: 1px dotted;
 }
 a.breadcrumb.currentLocation {
-	font-weight: bold;
-	margin: 0;
+	margin: 3px;
 }
 .tooltipContainer .currentLocation {
 	color: white;
@@ -1903,9 +2069,10 @@ a.breadcrumb.currentLocation {
 	white-space: nowrap;
 }
 .sidebarToolbar {
-	display: inline;
+	display: flex;
 	overflow: visible;
 	padding: 0 !important;
+	background-color: transparent !important;
 }
 .searchbox {
     background-image: url(../../images/core_sprites.png);
@@ -1966,20 +2133,21 @@ a.breadcrumb.currentLocation {
 .commandButton.dropdownDefaultButton {
 	
 }
-.commandButton:not(.primaryButton):hover {
+.commandButton:not(.primaryButton):not([disabled]):hover {
 	color: white;
 	background-color: #a5b5bc;
 	box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
 }
 .commandButton.disabled {
 	color: #cdcdcd;
+	border-color: #cdcdcd;
 }
 .primaryButton{
 	background: #1bb199;
 	border-color: #1bb199;
 	color: white;
 }
-.primaryButton:hover {
+.primaryButton:not([disabled]):hover {
 	background: #01CDB0;
 	border-color: #01CDB0;
 }
@@ -2146,6 +2314,10 @@ a.breadcrumb.currentLocation {
 .split {
 	background: #3B4B54;
 }
+.split:focus {
+	background: #00FF00;
+	outline: none;
+}
 .splitTracking {
 	background: #3B4B54;
 }
@@ -2176,6 +2348,13 @@ a.breadcrumb.currentLocation {
 .dialogContent .dropdownTrigger:not(.dropdownDefaultButton):not(:hover) {
 	color: #00AED1 !important;
 }
+.orionPage .findOptionsDiv .dropdownTrigger:not(.dropdownDefaultButton) {
+	color: white !important;
+}
+.desktopmode .dropdownTrigger a {
+	text-decoration: none;
+	pointer-events: none;
+}
 .dropdownTrigger a {
 	text-decoration: none;
 }
@@ -2195,7 +2374,6 @@ a.breadcrumb.currentLocation {
 	margin: 0; 
 	cursor: default;
 	font-size: 12px;
-	margin: 0;
 	outline: none;
 	padding: 3px 0 3px;
 }
@@ -2250,7 +2428,7 @@ a.breadcrumb.currentLocation {
 	border-left: 4px solid transparent;
 }
 .dropdownMenu .dropdownMenuItemSelected {
-	background-color: rgba(27,177,153, 0.1);
+	background-color: rgba(16,106,91, 0.1);
 	border-left-color: #1BB199;
 }
 .dropdownMenuItem .check {
@@ -2287,6 +2465,9 @@ a.breadcrumb.currentLocation {
 	position: relative !important;
 	z-index: 200 !important;
 }
+.dropdownSelection.dropdownTriggerOpen {
+	background-color: #CEDBEC !important;
+}
 .checkedMenuItem {
 	margin: 4px 6px 2px 0;
 	vertical-align: bottom;
@@ -2305,10 +2486,12 @@ a.breadcrumb.currentLocation {
 	color: white;
 	background-color: #158d7a;
 	border-radius: 3px;
-	padding: 8px;
+	padding: 4px;
 	clear: both;
 	float: left;
 	border: 1px solid #158d7a;
+}
+.tooltip:not(:focus) {
 	box-shadow: 0px 0px 10pt -2pt rgba(0, 0, 0, 0.5);
 }
 .tooltip.left {
@@ -2320,7 +2503,7 @@ a.breadcrumb.currentLocation {
 	color: #3b4b54;
 }
 .tooltip .operationStatus {
-	color: #00aed1;
+	color: #bfffff;
 }
 .tooltip .operationError {
 	color: #a6b5bc;
@@ -2515,7 +2698,8 @@ a.breadcrumb.currentLocation {
 	border-top-right-radius: 1px;
 }
 .dialogTitle > .dismissButton {
-	margin-right: 0;	
+    margin-right: 5px;
+    padding-right: 0;
 }
 .dialogTitleText {
 	margin: 2px 2px 0;
@@ -2525,11 +2709,6 @@ a.breadcrumb.currentLocation {
 	padding-left: 4px;
 	font-weight: bold;
 }
-.dialogDismiss {
-	display: block;
-	cursor: pointer;
-	padding: 2px;
-}
 .dialogContent {
 	padding: 8px;
 }
@@ -2537,7 +2716,7 @@ a.breadcrumb.currentLocation {
 	color: rgb(221, 221, 221);
 	cursor: pointer;
 }
-.parameterPopup .dismissButton:hover, .dialogTitle .dismissButton:hover {
+.parameterPopup .dismissButton:hover, .dialogTitle .dismissButton:hover, .dialogTitle .dismissButton:focus {
 	color: white;
 }
 .dialogButtons {
@@ -2581,6 +2760,7 @@ a.breadcrumb.currentLocation {
 }
 .core-sprite-git-logo {
 	font-size: 20px !important;
+	line-height: 18px !important;
 }
 .sprite-switch-check-x {
 	font-size: 14px;
@@ -2623,8 +2803,8 @@ a.breadcrumb.currentLocation {
 	color: white !important;
 }
 .contentassist .selected {
-	background-color: #1BB199 !important;
-	background: #1BB199 !important;
+	background-color: #1BB199;
+	background: #1BB199;
 	border-radius: 0; 
 	color: #FFF;
 }
@@ -2639,6 +2819,7 @@ a.breadcrumb.currentLocation {
 }
 .navlink > span {
 	color: inherit;
+	vertical-align: text-bottom;
 }
 .nav_fakelink:hover {
 	cursor: pointer;
@@ -2657,13 +2838,13 @@ a.breadcrumb.currentLocation {
 	border-bottom: 1px dotted;
 	color: #00AED1;
 }
-#auxpane .navlinkonpage, .nav_fakelink {
+.auxpane:not(#leftPane) .navlinkonpage, .nav_fakelink {
 	text-decoration: none;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	color: inherit;
 }
-#auxpane .navlink {
+.auxpane:not(#leftPane) .navlink {
 	display: inline-block;
 	padding: 2px;
 	color: inherit;
@@ -2671,7 +2852,7 @@ a.breadcrumb.currentLocation {
     line-height: 12px;
 	border-bottom: 1px solid transparent;
 }
-#auxpane .navlink:hover {
+.auxpane:not(#leftPane) .navlink:hover {
 	border-bottom: 1px dotted;
 }
 .dragOver {
@@ -2784,6 +2965,7 @@ html[dir="rtl"] .parametersDismiss {
 	cursor: pointer;
     border-radius: 1px;
 	padding: 2px;
+	padding-top: 1px;
 	font: 8pt Lucida Sans Unicode,Lucida Grande,Verdana,Arial,Helvetica,Myriad,Tahoma,clean,sans-serif;  
 	margin: 0 4px 0;
 	vertical-align: middle;
@@ -2842,7 +3024,6 @@ label.parameterInput {
 	font-weight: normal;
 	vertical-align: middle;
 	color:#333;
-	outline:none;
 }
 button.dismissButton.parameterInput {
 	color: whitesmoke;
@@ -2861,6 +3042,15 @@ input.parameterInput[type=checkbox] {
 textarea.parameterInput {
 	vertical-align: top;
 	width: 50em;
+	outline: none;
+}
+div.parameterInput[contenteditable="true"] {
+	width: 30em;
+	display: inline-block;
+	background-color: white;	
+}
+div.parameterInput[contenteditable="true"]:before {
+    content: "\feff ";
 }
 .parameterPopup {
 	min-width: 15em;
@@ -2889,8 +3079,6 @@ textarea.parameterInput {
 	vertical-align: baseline;
 	border-spacing: 8px;
 }
-.selectableNavRow:hover {
-}
 .disabledNavRow > .navColumn > .mainNavColumn {
 	outline: 1px dashed lightgray;
 }
@@ -2902,7 +3090,7 @@ textarea.parameterInput {
 	border: none;
 }
 .mainNavColumn {
-	display: inline-block;
+	display: inline;
 	vertical-align: baseline;
 	white-space: nowrap;
 }
@@ -3159,6 +3347,9 @@ html[dir="rtl"] .keyAssistFloat {
 	padding-left: 0;
 	padding-right: 0;
 }
+.keyAssistInput::placeholder {
+	color: #b4a454;
+}
 .keyAssistBindingInput {
 	font-size: 10pt;
 	font-weight: bold;
@@ -3176,7 +3367,11 @@ html[dir="rtl"] .keyAssistFloat {
 	border-collapse: collapse;
 	outline: none;
 }
+.keyAssistSection th {
+	text-align: start;
+}
 .keyAssistItem {
+	outline: none;
 }
 .keyAssistItem.selected {
 	color: black;
@@ -3189,18 +3384,24 @@ html[dir="rtl"] .keyAssistFloat {
 .keyAssistEditButton {
 	display: block;
 	visibility: hidden;
-	font-size: 13px !important;
 	color: white !important;
+}
+.keyAssistEditButton .core-sprite-edit {
+	font-size: 12px;
 }
 .keyAssistEditButtonVisible {
 	visibility: visible;
 }
 .keyAssistActions {
+	padding-right: 4px;
 	border-top-right-radius: 4px;
 	border-bottom-right-radius: 4px;
 }
 .keyAssistItem:hover .keyAssistEditButton  {
 	visibility: visible;
+}
+.keyAssistEditButton:focus {
+  background-color: #a5b5bc;
 }
 .keyAssistSpacer {
 	width: 16px;
@@ -3215,6 +3416,7 @@ html[dir="rtl"] .keyAssistFloat {
 .keyAssistName {
 	text-align: left;
 	padding: 3px;
+	padding-left: 20px;
 }
 .keyAssistAccel {
 	
@@ -3224,6 +3426,9 @@ html[dir="rtl"] .keyAssistFloat {
 	text-align: right;
 	padding: 3px;
 	min-width: 150px;
+}
+.keyAssistItem.selected .keyAssistAccel {
+    color: black;
 }
 .inputCompletionContainer {
 	border-radius:1px;
@@ -3265,7 +3470,7 @@ html[dir="rtl"] .keyAssistFloat {
 	padding: 0;
 }
 .inputCompletionLISelected {
-	background : #ffeecc;
+	background : rgba(60, 113, 179, 0.25);
 }
 .inputCompletionLICategory {
 	font-weight: bold;
@@ -3324,8 +3529,7 @@ html[dir="rtl"] #treeButtons {
 .secondaryColumn {
 	color: #666666;	
 	padding-right: 8px;
-	padding-top: 8px;
-	vertical-align:top;
+	vertical-align:middle;
 	white-space: nowrap;
 }
 html[dir="rtl"] .secondaryColumn { 
@@ -3357,13 +3561,14 @@ html[dir="rtl"] .secondaryColumnLeft {
 	text-align: right;
 }
 .primaryColumn {
-	color: #3087B3;
+	color: #266c8f;
 	text-decoration: none;
 	vertical-align:top;
 }
 .checkColumn {
 	padding: 0;
 	padding-left:10px;
+	vertical-align: middle;
 }
 html[dir="rtl"] .checkColumn { 
 	padding-right:10px;
@@ -3377,6 +3582,12 @@ html[dir="rtl"] .checkColumn {
 }
 .selectionModelContainer {
 	outline: none;
+	padding-left: 3px;
+	padding-right: 3px;
+ 	width: calc(100% - 6px);
+}
+.selectionModelContainer > div > table{
+  border-spacing: 0px 3px;
 }
 .treeIterationCursor {
 	border-radius:4px;
@@ -3388,10 +3599,10 @@ html[dir="rtl"] .checkColumn {
 	background-color: #f5f7f9;
 }
 .treeIterationCursorRow {
-	background-color: rgba(27, 177, 153, 0.3);
+	background-color: rgba(16,106,91, 0.3);
 }
 .treeIterationCursorRow_Dotted {
-	background-color: rgba(27, 177, 153, 0.3);
+	background-color: rgba(16,106,91, 0.3);
 }
 .searchCmdGroupMargin {
 	margin-left: 16px;
@@ -3527,6 +3738,12 @@ html[dir="rtl"] .uploadChooser{
 .setting-control[type="text"] {
 	width: 120px;
 }
+.setting-control[type="number"] {
+	width: 120px;
+}
+.userProfile input.setting-control {
+	width: 300px;
+}
 .local {
 	display: table;
 }
@@ -3540,6 +3757,9 @@ html[dir="rtl"] .uploadChooser{
 	overflow-x: visible;
 }
 .local .setting-content > div {
+	display: table-row;
+}
+.local .setting-content > div > label {
 	display: table-row;
 }
 .local .setting-header {
@@ -3571,11 +3791,9 @@ html[dir="rtl"] .local .setting-label {
 	width: 600px;
 	height: 400px;
 	z-index: 150;
-	border: 1px inset;
 	box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.2);
 	border: 1px solid #BBBBBB;
-    border-collapse: separate;
-    border-radius: 1px;
+	border-collapse: separate;
 }
 .centralNavigation {
 	margin-bottom:2px;
@@ -3611,11 +3829,10 @@ html[dir="rtl"] .groupedContentDivider{
 	font-family: sans-serif;
 }
 .currentLocation{
-	margin-left:auto;
-	margin-right:auto;
+	margin-left:3px;
+	margin-right:3px;
 }
 .modifiedFileMarker{
-	color:#333;
 	padding-left:5px;
 }
 html[dir="rtl"] .modifiedFileMarker{ 
@@ -3688,11 +3905,15 @@ html[dir="rtl"] .sectionWrapper, html[dir="rtl"] .sectionTable{
 .sectionTable:last-child {
 	margin-bottom: 5px;
 }
+.sectionTable.sectionOpened {
+	visibility: visible;
+}
 .sectionTable.sectionClosed {
 	height: 0;
 	-webkit-transform: scaleY(0);
 	-ms-transform: scaleY(0);
 	transform: scaleY(0);
+	visibility: hidden;
 }
 .sectionWrapper{
 	border: 1px solid;
@@ -3707,7 +3928,7 @@ html[dir="rtl"] .sectionWrapper, html[dir="rtl"] .sectionTable{
 	border-color: #e3e7ea;
 	transition: all 0.1s ease;
 }
-.sectionWrapper.sectionClosed {
+.sectionWrapper.sectionClosed:not(:focus) {
 	box-shadow: none;
 }
 .sectionWrapper.sectionClosed:hover {
@@ -3717,7 +3938,7 @@ html[dir="rtl"] .sectionWrapper, html[dir="rtl"] .sectionTable{
 .sectionTable td {
 	border-bottom: 1px solid #f1f3f4;
 	vertical-align: middle;
-	color: #707070;
+	color: #505050;
 }
 .sectionTable tr:last-child td{
 	border-bottom: 0;
@@ -3870,6 +4091,7 @@ html[dir="rtl"] .progressBarWrapper {
 	text-overflow: ellipsis;
 	vertical-align: middle;
 	white-space: nowrap;
+	color: white;
 }
 .progressBarWrapper .progressBar {
 	vertical-align: top;
@@ -3909,6 +4131,7 @@ html[dir="rtl"] .uploadNode .uploadCancelButton {
 .promptDialogMessage {
 	color: #222;
 	margin: 0 2px 4px 2px;
+	white-space: pre;
 }
 .promptDialogInput {
 	min-width: 200px;
@@ -3937,4 +4160,86 @@ html[dir="rtl"] .uploadNode .uploadCancelButton {
 html[dir="rtl"] .fileExplorerProgressDiv { 
 	margin-right: 10px;
 	margin-left: auto;	
+}
+.treeAnnotation {
+	pointer-events: none;
+	display: inline-block;
+	vertical-align: bottom;
+	padding: 0 2px;
+	height: 20px;
+}
+.navAnnotation .collabAnnotation {
+	pointer-events: initial;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	font-size: 11px;
+	font-weight: bold;
+	font-family: monospace;
+	line-height: 16px;
+	text-align: center;
+	color: #fff;
+	margin: 2px 2px 2px 2px;
+	cursor: pointer;
+    vertical-align: bottom;
+}
+.collabAnnotation.collabEditing {
+    animation: collab-editing 1s infinite;
+}
+@keyframes collab-editing {
+    0% {
+		box-shadow: rgba(127, 191, 255, 0) 0 0 4px 2px;
+	}
+    50% {
+		box-shadow: rgba(127, 191, 255, 1) 0 0 4px 2px;
+    }
+    100% {
+		box-shadow: rgba(127, 191, 255, 0) 0 0 4px 2px;
+	}
+}
+.treeAnnotation .overlay {
+	width: 7px;
+	height: 7px;
+	display: inline-block;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAAXNSR0IArs4c6QAAAAZiS0dEAAAAAAAA+UO7fwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sJEAQvB2JVdrAAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAAD1JREFUCNdtjkESADAEAzemf69f66HMqGlOIhYiFRFRtSQBWAY7mzx+EDTL6sSgb1jTk7Q87rxyqe37fXsAa78gLyZnRgEAAAAASUVORK5CYII=");
+    position: relative;
+    left: -7px;
+	top: 7px;
+}
+.treeAnnotation .editingAnnotation {
+	height: 16px;
+	line-height: 16px;
+	font-size: 16px;
+	text-shadow: 0px 0px 1px #000000;
+	display: inline-block;
+	cursor: pointer;
+	margin: 2px;
+	pointer-events: initial;
+    vertical-align: bottom;
+}
+.treetable-tooltip {
+	z-index: 999;
+	padding: 10px;
+	background-color: #fff;
+	border-width: 1px;
+	border-style: solid;
+	word-break: break-all;
+	width: 200px;
+	min-height: 20px;
+	position: absolute;
+}
+.treetable-tooltip .cross {
+	position: absolute;
+	right: 3px;
+	top: 1px;
+	cursor: pointer;
+}
+.visuallyhidden {
+    position: absolute;
+    left: -9999em;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
