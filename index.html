@@ -7,6 +7,18 @@
 		<title>Orion Code Edit</title>
 	    <link rel="stylesheet" type="text/css" href="editorBuild/code_edit/built-codeEdit.css"/>
 		<style type="text/css">
+			body {
+				margin: 0;
+			}
+			.logo {
+				background-color: black;
+				border-radius: 5px;
+				padding-left: 10px;
+			}
+			.embeddedEditorHeader {
+				background-color: black;
+				color: #ffd400;
+			}
 			.embeddedEditorParentOuter{
 				border: 1px solid;
 				vertical-align: middle;
@@ -202,8 +214,8 @@
 		</script>
     </head>
 	<body id="orion-browser" spellcheck="false" class="orionPage">
+		<h1 class="embeddedEditorHeader"><span class="logo"><img src="images/logo.png" alt="Orion"/></span>Orion Code Edit</h1>
 		<div class="embeddedEditorDemoTextParent">
-			<h1>Orion Code Edit</h1>
 			<p>This demo shows how the <b>.tern-project</b> and <b>.eslintrc</b> files are used to configure the javascript validation in the <b>Orion codeEdit</b> widget. 
 			The <b>.tern-project</b> file can be modified automatically by the quick fix. 
 			You can also manually update the <b>.tern-project</b> or the <b>.eslintrc</b> files and the javascript file on the top will be revalidated right away.
